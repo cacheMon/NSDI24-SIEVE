@@ -1,11 +1,49 @@
-# NSDI24-SIEVE
-The repo for NSDI24 paper: SIEVE is Simpler than LRU: an Efficient Turn-Key Eviction Algorithm for Web Caches
+# SIEVE: an Efficient Turn-Key Eviction Algorithm for Web Caches
+SIEVE is an eviction algorithm simpler than LRU for web caches.
+- It is easy to implement and can be easily integrated into existing systems.
+- It achieves state-of-the-art efficiency on skewed workloads.
+- It can facilitate the design of advanced eviction algorithms.
 
-<div style="text-align: center;">
+Please check out NSDI'24 [paper](https://yazhuozhang.com/assets/publication/nsdi24-sieve.pdf) for more details.
+
+<!-- The repo contains code for NSDI'24 paper: [SIEVE is Simpler than LRU: an Efficient Turn-Key Eviction Algorithm for Web Caches](https://yazhuozhang.com/assets/publication/nsdi24-sieve.pdf). -->
+
+<!-- <div style="text-align: center;">
   <img src="/doc/diagram/Sieve_illustration.svg" alt="diagram" width="480"/>
-</div>
+</div> -->
 
-# Details coming soon!
+## Repo Structure
+- [Simulator](): a snapshot of [libCacheSim](https://github.com/1a1a11a/libCacheSim)
+- [Traces](#traces): 
+- [Prototypes](): 
+
+## Usage
+
+Start with a quick installation of libCacheSim.
+```bash
+cd scripts && bash install_dependency.sh && bash install_libcachesim.sh;
+```
+
+After building and installing libCacheSim, `cachesim` should be in the `_build/bin/` directory. You can use `cachesim` to run cache simulations.
+```bash
+# ./cachesim DATAPATH TRACE_FORMAT EVICTION_ALGO CACHE_SIZE [OPTION...]
+# Run a single cache simulation
+./_build/bin/cachesim data/trace.oracleGeneral.bin oracleGeneral sieve 1gb
+# Run multiple cache simulations with different algorithms and differnt cache sizes (when CACHE_SIZE is 0)
+./_build/bin/cachesim data/trace.oracleGeneral.bin oracleGeneral fifo,lru,clock,sieve 0 --ignore-obj-size 1
+```
+Results are recored at `result/TRACE_NAME`. (More detailed instructions can be found at [libCacheSim](https://github.com/1a1a11a/libCacheSim).)
+
+## Traces
+The traces we used in the paper can be downloaded in the following.
+| Trace         | Approx Time | # traces | cache type | # request (million) | # object (million) |
+|---------------|-------------|----------|------------|---------------------|--------------------|
+| [Tencent Photo](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/tencentPhoto/) | 2018        | 2        | object     | 5,650               | 1,038              |
+| [Wiki CDN](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/wiki/)      | 2019        | 3        | object     | 2,863               | 56                 |
+| [Twitter KV](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/twitter/)    | 2020        | 54       | KV         | 195,441             | 10,650             |
+| [Meta KV](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/metaKV/)       | 2022        | 5        | KV         | 1,644               | 82                 |
+| [Meta CDN](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/metaCDN/)      | 2023        | 3        | object     | 231                 | 76                 |
+
 
 <!-- ## Abstract
 Caching is an indispensable technique for low-cost and fast data serving. The eviction algorithm, at the heart of a cache, has been primarily designed to maximize efficiency— reducing the cache miss ratio. Many eviction algorithms have been designed in the past decades. However, they all tradeoff throughput and/or simplicity to achieve high efficiency. Such a tradeoff often hinders adoption in production systems.
