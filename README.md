@@ -64,7 +64,7 @@ We chose the most popular cache libraries/systems from five different languages:
 - [mnemonist](https://github.com/cacheMon/mnemonist) (Javascript): 12 lines of code change.
 - [lru-rs](https://github.com/cacheMon/lru-rs) (Rust): 16 lines of code change.
 - [lru-dict](https://github.com/cacheMon/lru-dict) (Python + C): 21 lines of code change.
-- [cachelib](): coming soon.
+- [cachelib](https://github.com/Thesys-lab/cachelib-sosp23) (C++):  Cachelib is highly optimized for LRU-based algorithms. Many optimizations are not needed for SIEVE, making it impractical to quantify code modifications for integration with SIEVE.
 
 
 ### Reference
