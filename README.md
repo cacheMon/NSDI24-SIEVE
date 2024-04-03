@@ -1,4 +1,7 @@
-# SIEVE: an Efficient Turn-Key Eviction Algorithm for Web Caches
+<img width="300" src="doc/diagram/logo.svg" alt="sieve Logo" />
+
+<hr/>
+
 SIEVE is an eviction algorithm simpler than LRU for web caches.
 - It is easy to implement and can be easily integrated into existing systems.
 - It achieves state-of-the-art efficiency on skewed workloads.
@@ -6,11 +9,6 @@ SIEVE is an eviction algorithm simpler than LRU for web caches.
 
 Please check out NSDI'24 [paper](https://yazhuozhang.com/assets/publication/nsdi24-sieve.pdf) for more details.
 
-<!-- The repo contains code for NSDI'24 paper: [SIEVE is Simpler than LRU: an Efficient Turn-Key Eviction Algorithm for Web Caches](https://yazhuozhang.com/assets/publication/nsdi24-sieve.pdf). -->
-
-<!-- <div style="text-align: center;">
-  <img src="/doc/diagram/Sieve_illustration.svg" alt="diagram" width="480"/>
-</div> -->
 
 ## Repo Structure
 - [Simulator](#install-libcachesim): a snapshot of [libCacheSim](https://github.com/1a1a11a/libCacheSim)
