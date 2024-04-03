@@ -1,0 +1,16 @@
+__pycache__
+*deprecated*
+*.DS_Store*
+*.bak
+*.clean
+*.nogit*
+*_build*
+build
+.idea
+example/cacheSimulatorC/cmake-build-debug
+.vscode/*
+*.log
+.venv
+fig/
+# Chaos
+sftp-config.json

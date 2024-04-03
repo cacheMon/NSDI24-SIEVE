@@ -195,7 +195,7 @@ def run():
 
 if __name__ == "__main__":
     default_args = {
-        "algos": "fifo,lru,arc,lhd,lecar,s3fifo,sieve",
+        "algos": "fifo,lru,clock,sieve",
         "sizes": "0.001,0.005,0.01,0.02,0.05,0.10,0.20,0.40",
     }
     import argparse
@@ -206,7 +206,7 @@ if __name__ == "__main__":
         + "--tracepath ../data/twitter_cluster52.csv "
         "--trace-format csv "
         '--trace-format-params="time-col=1,obj-id-col=2,obj-size-col=3,delimiter=,,obj-id-is-num=1" '
-        "--algos=fifo,lru,lecar,s3fifo"
+        "--algos=fifo,lru,clock,sieve"
     )
     p.add_argument("--tracepath", type=str, required=True)
     p.add_argument(

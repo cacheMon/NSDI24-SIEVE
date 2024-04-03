@@ -13,13 +13,13 @@ Please check out NSDI'24 [paper](https://yazhuozhang.com/assets/publication/nsdi
 </div> -->
 
 ## Repo Structure
-- [Simulator](): a snapshot of [libCacheSim](https://github.com/1a1a11a/libCacheSim)
-- [Traces](#traces): 
-- [Prototypes](): 
+- [Simulator](#install-libcachesim): a snapshot of [libCacheSim](https://github.com/1a1a11a/libCacheSim)
+- [Traces](#traces)
+- [Prototypes](): [groupcache](https://github.com/cacheMon/groupcache), [mnemonist](https://github.com/cacheMon/mnemonist), [lru-rs](https://github.com/cacheMon/lru-rs), [lru-dict](https://github.com/cacheMon/lru-dict)
 
 ## Usage
 
-Start with a quick installation of libCacheSim.
+### Install libCacheSim
 ```bash
 cd scripts && bash install_dependency.sh && bash install_libcachesim.sh;
 ```
@@ -34,6 +34,21 @@ After building and installing libCacheSim, `cachesim` should be in the `_build/b
 ```
 Results are recored at `result/TRACE_NAME`. (More detailed instructions can be found at [libCacheSim](https://github.com/1a1a11a/libCacheSim).)
 
+### Quick Tryout with Zipfian Data
+We offer a small example trace in `mydata/zipf/`, and you can test the miss ratio for varied algorithms.
+```bash
+python3 libCacheSim/scripts/plot_mrc_size.py --tracepath mydata/zipf/zipf_1.0 --trace-format txt --algos=fifo,lru,clock,sieve
+```
+<div style="text-align: left;">
+  <img src="/doc/diagram/mr_zipf.png" alt="diagram" width="480"/>
+</div>
+
+Feel free to generate different zipfian traces and try out.
+```bash
+python3 libCacheSim/scripts/data_gen.py -m 10000 -n 1000000 --alpha 1.0 > mydata/zipf/zipf_1.0
+```
+
+
 ## Traces
 The traces we used in the paper can be downloaded in the following.
 | Trace         | Approx Time | # traces | cache type | # request (million) | # object (million) |
@@ -43,6 +58,17 @@ The traces we used in the paper can be downloaded in the following.
 | [Twitter KV](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/twitter/)    | 2020        | 54       | KV         | 195,441             | 10,650             |
 | [Meta KV](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/metaKV/)       | 2022        | 5        | KV         | 1,644               | 82                 |
 | [Meta CDN](https://ftp.pdl.cmu.edu/pub/datasets/twemcacheWorkload/cacheDatasets/metaCDN/)      | 2023        | 3        | object     | 231                 | 76                 |
+
+
+### Reference
+```bibtex
+@inproceedings{zhang2024-sieve,
+  title={SIEVE is Simpler than LRU: an Efficient Turn-Key Eviction Algorithm for Web Caches},
+  author={Zhang, Yazhuo and Yang, Juncheng and Yue, Yao and Vigfusson, Ymir and Rashmi, K.V.},
+  booktitle={USENIX Symposium on Networked Systems Design and Implementation (NSDI'24)},
+  year={2024}
+}
+```
 
 
 <!-- ## Abstract
@@ -70,12 +96,4 @@ struct {
 The compressed traces can be used with libCacheSim without decompression. And libCacheSim provides a tracePrint tool to print the trace in human-readable format.
 
 
-### Citation
-```bibtex
-@inproceedings{zhang2024-sieve,
-  title={SIEVE is Simpler than LRU: an Efficient Turn-Key Eviction Algorithm for Web Caches},
-  author={Zhang, Yazhuo and Yang, Juncheng and Yue, Yao and Vigfusson, Ymir and Rashmi, K.V.},
-  booktitle={USENIX Symposium on Networked Systems Design and Implementation (NSDI'24)},
-  year={2024}
-}
-```  -->
+-->
